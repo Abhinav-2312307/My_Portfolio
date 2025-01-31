@@ -230,6 +230,38 @@
                 height: 200px;
             }
         }
+        .contact-options {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .contact-options a {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1rem 2rem;
+            background: var(--primary-color);
+            color: var(--dark-color);
+            border-radius: 50px;
+            text-decoration: none;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .contact-options a i {
+            font-size: 1.2rem;
+        }
+
+        .contact-options a:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px var(--primary-color);
+        }
+
+        /* Update social links in hero section */
+        .social-links a:nth-child(3) {  /* For LeetCode icon */
+            font-size: 1.8rem;
+        }
     </style>
 </head>
 <body>
@@ -243,27 +275,26 @@
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
-
     <section id="home" class="hero">
         <div class="hero-content">
             <img src="profile.jpg" alt="Abhinav Sahu" class="profile-img">
             <div>
                 <h1>Abhinav Sahu</h1>
-                <div class="typing-text">AI & Data Science Enthusiast | C++ , c & Python Developer</div>
+                <div class="typing-text">AI & Data Science Enthusiast | C++ & Python Developer</div>
                 <div class="social-links">
                     <a href="https://github.com/Abhinav-2312307" target="_blank"><i class="fab fa-github"></i></a>
                     <a href="https://www.linkedin.com/in/abhinav-sahu-865a01297/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://leetcode.com/u/lucifer_debug/" target="_blank"><i class="fas fa-code"></i></a>
                 </div>
             </div>
         </div>
     </section>
-
     <section id="skills" class="skills">
         <h2>Technical Skills</h2>
         <div class="skills-grid">
             <div class="skill-card">
                 <h3>Programming Languages</h3>
-                <p>C++ (Primary), Python</p>
+                <p>C++ (Primary), C, Python</p>
             </div>
             <div class="skill-card">
                 <h3>Technologies</h3>
@@ -289,8 +320,20 @@
 
     <section id="contact" class="contact">
         <h2>Get in Touch</h2>
-        <a href="https://github.com/Abhinav-2312307" target="_blank">GitHub Profile</a>
-        <a href="https://www.linkedin.com/in/abhinav-sahu-865a01297/" target="_blank">LinkedIn Profile</a>
+        <div class="contact-options">
+            <a href="https://github.com/Abhinav-2312307" target="_blank">
+                <i class="fab fa-github"></i> GitHub
+            </a>
+            <a href="https://www.linkedin.com/in/abhinav-sahu-865a01297/" target="_blank">
+                <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+            <a href="https://leetcode.com/u/lucifer_debug/" target="_blank">
+                <i class="fas fa-code"></i> LeetCode
+            </a>
+            <a href="2k23.cs2312307@gmail.com">
+                <i class="far fa-envelope"></i> Email
+            </a>
+        </div>
     </section>
 
     <script>
