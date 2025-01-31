@@ -23,6 +23,7 @@
             background-color: var(--dark-color);
             color: white;
             overflow-x: hidden;
+            cursor: none;
         }
 
         /* Navigation */
@@ -60,9 +61,38 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            text-align: center;
             background: linear-gradient(45deg, var(--secondary-color), var(--dark-color));
             padding: 2rem;
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            .hero-content {
+                flex-direction: row;
+                gap: 4rem;
+            }
+        }
+
+        .profile-img {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            border: 5px solid var(--primary-color);
+            object-fit: cover;
+            margin: 2rem;
+            box-shadow: 0 0 30px var(--primary-color);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
         }
 
         .hero-content h1 {
@@ -171,6 +201,20 @@
             transform: scale(1.05);
         }
 
+        /* Glowing Cursor */
+        .cursor {
+            position: fixed;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--primary-color) 0%, transparent 70%);
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            mix-blend-mode: screen;
+            transition: transform 0.15s;
+        }
+
         @media (max-width: 768px) {
             .hero-content h1 {
                 font-size: 2.5rem;
@@ -179,10 +223,17 @@
             .project-card {
                 flex-direction: column;
             }
+
+            .profile-img {
+                width: 200px;
+                height: 200px;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="cursor"></div>
+    
     <nav class="navbar">
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
@@ -194,11 +245,14 @@
 
     <section id="home" class="hero">
         <div class="hero-content">
-            <h1>Abhinav Sahu</h1>
-            <div class="typing-text">AI & Data Science Enthusiast | C++ , C & Python Developer</div>
-            <div class="social-links">
-                <a href="https://github.com/Abhinav-2312307" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/abhinav-sahu-865a01297/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <img src="profile.jpg" alt="Abhinav Sahu" class="profile-img">
+            <div>
+                <h1>Abhinav Sahu</h1>
+                <div class="typing-text">AI & Data Science Enthusiast | C++ & Python Developer</div>
+                <div class="social-links">
+                    <a href="https://github.com/Abhinav-2312307" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/abhinav-sahu-865a01297/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                </div>
             </div>
         </div>
     </section>
@@ -224,7 +278,7 @@
     <section id="projects" class="projects">
         <h2>Featured Project</h2>
         <div class="project-card">
-            <img src="project-placeholder.jpg" alt="Map my PSIT">
+            <img src="projectMap.jpg" alt="Map my PSIT">
             <div>
                 <h3>Map my PSIT</h3>
                 <p>A comprehensive campus navigation system developed using [Your Technologies]. This project helps students and visitors navigate the PSIT campus efficiently with real-time updates and optimized pathfinding.</p>
@@ -239,7 +293,7 @@
     </section>
 
     <script>
-        // Smooth scrolling for navigation links
+        // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -249,7 +303,7 @@
             });
         });
 
-        // Typing effect animation
+        // Typing effect
         const typingText = document.querySelector('.typing-text');
         const texts = ["AI Developer", "Data Science Enthusiast", "C++ Programmer", "Python Developer"];
         let index = 0;
@@ -276,7 +330,24 @@
             }
         }
 
-        // Start typing effect on page load
+        // Cursor animation
+        const cursor = document.querySelector('.cursor');
+        
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        document.querySelectorAll('a, button, .skill-card').forEach(element => {
+            element.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
+            });
+            element.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+            });
+        });
+
+        // Start animations
         window.onload = function() {
             if (typingText) setTimeout(type, 1000);
         };
